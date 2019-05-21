@@ -1,0 +1,19 @@
+{
+  "name": "alchemy-type-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jwmcconnell/alchemy-type-api.git"
+  },
+  "author": "Jack McConnell",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jwmcconnell/alchemy-type-api/issues"
+  },
+  "homepage": "https://github.com/jwmcconnell/alchemy-type-api#readme"
+}

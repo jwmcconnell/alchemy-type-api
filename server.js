@@ -11,9 +11,9 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
-    res.send("alchemy type is working");
+  res.send("alchemy type is working");
 });
 
 app.listen(3000, () => {
-    console.log(`running on port 3000`);
+  console.log(`running on port 3000`);
 });

@@ -1,32 +1,32 @@
 {
-  "name": "alchemy-type-api",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jwmcconnell/alchemy-type-api.git"
-  },
-  "author": "Jack McConnell",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/jwmcconnell/alchemy-type-api/issues"
-  },
-  "homepage": "https://github.com/jwmcconnell/alchemy-type-api#readme",
-  "dependencies": {
-    "bcrypt-nodejs": "0.0.3",
-    "body-parser": "^1.19.0",
-    "cors": "^2.8.5",
-    "express": "^4.17.0",
-    "jsonwebtoken": "^8.5.1",
-    "knex": "^0.16.5",
-    "pg": "^7.11.0",
-    "redis": "^2.8.0"
-  },
-  "devDependencies": {
-    "nodemon": "^1.19.0"
-  }
+    "name": "alchemy-type-api",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "nodemon server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jwmcconnell/alchemy-type-api.git"
+    },
+    "author": "Jack McConnell",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/jwmcconnell/alchemy-type-api/issues"
+    },
+    "homepage": "https://github.com/jwmcconnell/alchemy-type-api#readme",
+    "dependencies": {
+        "bcrypt-nodejs": "0.0.3",
+        "body-parser": "^1.19.0",
+        "cors": "^2.8.5",
+        "express": "^4.17.0",
+        "jsonwebtoken": "^8.5.1",
+        "knex": "^0.16.5",
+        "pg": "^7.11.0",
+        "redis": "^2.8.0"
+    },
+    "devDependencies": {
+        "nodemon": "^1.19.0"
+    }
 }

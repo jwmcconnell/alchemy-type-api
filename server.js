@@ -27,7 +27,6 @@ app.get("/", (req, res) => {
 });
 
 app.post("/login", (req, res) => {
-  console.log("login");
   login.handleAuth(req, res, db, bcrypt, jwt);
 });
 app.post("/register", (req, res) => {

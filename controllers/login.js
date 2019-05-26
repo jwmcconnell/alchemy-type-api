@@ -1,3 +1,4 @@
+const profile = require("./profile");
 const redis = require("redis");
 
 // Setup Redis
@@ -28,13 +29,14 @@ const handleLogin = (req, res, db, bcrypt) => {
     .catch(err => Promise.reject("wrong credentials"));
 };
 
-const getAuthTokenId = (req, res) => {
+const getAuthTokenId = (req, res, db) => {
   const { authorization } = req.headers;
-  return redisClient.get(authorization, (err, reply) => {
+  redisClient.get(authorization, (err, reply) => {
     if (err || !reply) {
       return res.status(400).json("Unauthorized");
     }
-    return res.json({ id: reply });
+    req.params = { id: reply };
+    return profile.handleProfileGet(req, res, db);
   });
 };
 
@@ -62,15 +64,15 @@ const createSessions = (user, jwt) => {
 const handleAuth = (req, res, db, bcrypt, jwt) => {
   const { authorization } = req.headers;
   return authorization
-    ? getAuthTokenId(req, res)
+    ? getAuthTokenId(req, res, db)
     : handleLogin(req, res, db, bcrypt)
-        .then(data => {
-          return data.id && data.email
-            ? createSessions(data, jwt)
-            : Promise.reject(data);
-        })
-        .then(session => res.json(session))
-        .catch(err => res.status(400).json(err));
+      .then(data => {
+        return data.id && data.email
+          ? createSessions(data, jwt)
+          : Promise.reject(data);
+      })
+      .then(session => res.json(session))
+      .catch(err => res.status(400).json(err));
 };
 
 module.exports = {

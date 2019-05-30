@@ -36,6 +36,6 @@ app.get("/", (req, res) => {
 //   profile.handleProfileGet(req, res, db);
 // });
 
-app.listen(3000, () => {
-  console.log(`running on port 3000`);
+app.listen(process.env.PORT || 3000, () => {
+  console.log(`running on port ${process.env.PORT || 3000}`);
 });

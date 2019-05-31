@@ -47,6 +47,7 @@ const signToken = (email, jwt) => {
 };
 
 const setToken = (token, value) => {
+  console.log('pre redis call in setToken');
   return Promise.resolve(redisClient.set(token, value));
 };
 
@@ -56,7 +57,7 @@ const createSessions = (user, jwt) => {
   const token = signToken(email, jwt);
   return setToken(token, id)
     .then(() => {
-      console.log('set token success, token id: ', token)
+      console.log('set token success, token id: ', token);
       return { success: "true", userId: id, token: token };
     })
     .catch(console.log);

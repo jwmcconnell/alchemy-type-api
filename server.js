@@ -32,7 +32,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/login", (req, res) => {
-  console.log('logging in ');
+  console.log('logging in');
   login.handleAuth(req, res, db, bcrypt, jwt);
 });
 app.post("/register", (req, res) => {

@@ -67,6 +67,7 @@ const handleAuth = (req, res, db, bcrypt, jwt) => {
     ? getAuthTokenId(req, res, db)
     : handleLogin(req, res, db, bcrypt)
       .then(data => {
+        console.log('handleLogin data: ', data);
         return data.id && data.email
           ? createSessions(data, jwt)
           : Promise.reject(data);

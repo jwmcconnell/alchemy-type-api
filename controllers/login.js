@@ -2,7 +2,7 @@ const profile = require("./profile");
 const redis = require("redis");
 
 // Setup Redis
-const redisClient = redis.createClient(process.env.REDIS_URI);
+const redisClient = redis.createClient(process.env.REDIS_URL);
 
 const handleLogin = (req, res, db, bcrypt) => {
   const { email, password } = req.body;

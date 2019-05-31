@@ -41,26 +41,21 @@ const getAuthTokenId = (req, res, db) => {
 };
 
 const signToken = (email, jwt) => {
-  console.log('signing token')
   const jwtPayload = { email };
   const jwtSecret = process.env.JWT_SECRET;
-  console.log('jwt secret: ', jwtSecret);
   return jwt.sign(jwtPayload, jwtSecret, { expiresIn: "2 days" });
 };
 
 const setToken = (token, value) => {
-  console.log('pre redis call in setToken');
   return Promise.resolve(redisClient.set(token, value));
 };
 
 const createSessions = (user, jwt) => {
-  console.log('creating sessions');
   // JWT token, return user data
   const { email, id } = user;
   const token = signToken(email, jwt);
   return setToken(token, id)
     .then(() => {
-      console.log('set token success, token id: ', token);
       return { success: "true", userId: id, token: token };
     })
     .catch(console.log);
@@ -72,7 +67,6 @@ const handleAuth = (req, res, db, bcrypt, jwt) => {
     ? getAuthTokenId(req, res, db)
     : handleLogin(req, res, db, bcrypt)
       .then(data => {
-        console.log('handleLogin data: ', data);
         return data.id && data.email
           ? createSessions(data, jwt)
           : Promise.reject(data);

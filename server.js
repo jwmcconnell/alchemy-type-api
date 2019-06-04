@@ -47,8 +47,12 @@ app.post("/register", (req, res) => {
 app.post("/passages", auth.requireAuth, (req, res) => {
   passage.handleAddPassage(req, res, db);
 });
-app.get("/passages", auth.requireAuth, (req, res) => {
-  passage.handleGetPassages(req, res, db);
+app.get("/passages/:id", auth.requireAuth, (req, res) => {
+  if (req.params.id) {
+    passage.handleGetPassage(req, res, db);
+  } else {
+    passage.handleGetPassages(req, res, db);
+  }
 });
 
 app.get("/profile/:id", auth.requireAuth, (req, res) => {

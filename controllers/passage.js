@@ -33,7 +33,21 @@ const handleGetPassages = (req, res, db) => {
   }
 }
 
+const handleGetPassage = (req, res, db) => {
+  const userId = req.userId;
+  const id = req.params.id;
+  if (userId) {
+    db.select("*")
+      .from("passages")
+      .where("id", id)
+      .then(passage => {
+        res.json(passages);
+      })
+  }
+}
+
 module.exports = {
   handleAddPassage: handleAddPassage,
-  handleGetPassages: handleGetPassages
+  handleGetPassages: handleGetPassages,
+  handleGetPassage: handleGetPassage
 };

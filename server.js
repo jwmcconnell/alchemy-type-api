@@ -13,11 +13,16 @@ const auth = require("./middlewares/authorization");
 
 const db = knex({
   client: "pg",
-  connection: {
-    connectionString: process.env.DATABASE_URL,
-    ssl: true
-  }
+  connection: process.env.POSTGRES_URI
 });
+
+// const db = knex({
+//   client: "pg",
+//   connection: {
+//     connectionString: process.env.DATABASE_URL,
+//     ssl: true
+//   }
+// });
 
 const port = process.env.PORT || 3000;
 

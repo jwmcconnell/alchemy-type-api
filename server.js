@@ -43,9 +43,14 @@ app.post("/login", (req, res) => {
 app.post("/register", (req, res) => {
   register.handleRegister(req, res, db, bcrypt);
 });
+
 app.post("/passages", auth.requireAuth, (req, res) => {
-  passage.handleAddPassage(req, res, db, bcrypt);
+  passage.handleAddPassage(req, res, db);
 });
+app.get("/passages", auth.requireAuth, (req, res) => {
+  passage.handleGetPassages(req, res, db);
+});
+
 app.get("/profile/:id", auth.requireAuth, (req, res) => {
   profile.handleProfileGet(req, res, db);
 });

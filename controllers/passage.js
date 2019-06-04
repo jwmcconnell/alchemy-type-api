@@ -22,6 +22,18 @@ const handleAddPassage = (req, res, db) => {
   }
 };
 
+const handleGetPassages = (req, res, db) => {
+  const userId = req.userId;
+  if (userId) {
+    db.select("*")
+      .from("passages")
+      .then(passages => {
+        res.json(passages);
+      })
+  }
+}
+
 module.exports = {
-  handleAddPassage: handleAddPassage
+  handleAddPassage: handleAddPassage,
+  handleGetPassages: handleGetPassages
 };

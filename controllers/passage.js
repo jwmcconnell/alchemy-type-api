@@ -42,7 +42,7 @@ const handleGetPassage = (req, res, db) => {
       .from("passages")
       .where("id", id)
       .then(passage => {
-        res.json(passages);
+        res.json(passage[0]);
       })
   }
 }

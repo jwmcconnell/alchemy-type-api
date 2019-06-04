@@ -9,6 +9,7 @@ const morgan = require("morgan");
 const register = require("./controllers/register");
 const login = require("./controllers/login");
 const profile = require("./controllers/profile");
+const passage = require("./controllers/passage");
 const auth = require("./middlewares/authorization");
 
 const db = knex({
@@ -41,6 +42,9 @@ app.post("/login", (req, res) => {
 });
 app.post("/register", (req, res) => {
   register.handleRegister(req, res, db, bcrypt);
+});
+app.post("/passage", auth.requireAuth, (req, res) => {
+  passage.handleAddPassage(req, res, db, bcrypt);
 });
 app.get("/profile/:id", auth.requireAuth, (req, res) => {
   profile.handleProfileGet(req, res, db);

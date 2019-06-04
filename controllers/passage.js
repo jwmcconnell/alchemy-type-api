@@ -28,6 +28,7 @@ const handleGetPassages = (req, res, db) => {
     db.select("*")
       .from("passages")
       .then(passages => {
+        console.log(passages);
         res.json(passages);
       })
   }

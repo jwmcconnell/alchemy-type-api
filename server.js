@@ -49,10 +49,12 @@ app.post("/passages", auth.requireAuth, (req, res) => {
 });
 app.get("/passages/:id", auth.requireAuth, (req, res) => {
   if (req.params.id) {
+    console.log('getting passage singular')
     passage.handleGetPassage(req, res, db);
-  } else {
-    passage.handleGetPassages(req, res, db);
   }
+});
+app.get("/passages", auth.requireAuth, (req, res) => {
+  passage.handleGetPassages(req, res, db);
 });
 
 app.get("/profile/:id", auth.requireAuth, (req, res) => {

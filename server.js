@@ -43,7 +43,7 @@ app.post("/login", (req, res) => {
 app.post("/register", (req, res) => {
   register.handleRegister(req, res, db, bcrypt);
 });
-app.post("/passage", auth.requireAuth, (req, res) => {
+app.post("/passages", auth.requireAuth, (req, res) => {
   passage.handleAddPassage(req, res, db, bcrypt);
 });
 app.get("/profile/:id", auth.requireAuth, (req, res) => {

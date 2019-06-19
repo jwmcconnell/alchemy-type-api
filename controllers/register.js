@@ -19,9 +19,19 @@ const handleRegister = (req, res, db, bcrypt) => {
             name: name,
             joined: new Date()
           })
-          .then(user => {
-            res.json(user[0]);
-          })
+      })
+      .then(user => {
+        return trx('stats')
+          .returning('*')
+          .insert({
+            user_id: user[0].id,
+            passages: 0,
+            avg_wpm: 0,
+            avg_errors: 0
+          });
+      })
+      .then(user => {
+        res.status(200).json(user[0].user_id);
       })
       .then(trx.commit)
       .catch(trx.rollback)

@@ -1,7 +1,6 @@
 const handleAddPassage = (req, res, db) => {
   const userId = req.userId;
   const passage = req.body.passage;
-  console.log(userId, passage);
   if (userId) {
     db.transaction(trx => {
       trx
@@ -28,7 +27,6 @@ const handleGetPassages = (req, res, db) => {
     db.select("*")
       .from("passages")
       .then(passages => {
-        console.log(passages);
         res.json(passages);
       })
   }

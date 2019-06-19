@@ -48,10 +48,7 @@ app.post("/passages", auth.requireAuth, (req, res) => {
   passage.handleAddPassage(req, res, db);
 });
 app.get("/passages/:id", auth.requireAuth, (req, res) => {
-  if (req.params.id) {
-    console.log('getting passage singular')
-    passage.handleGetPassage(req, res, db);
-  }
+  passage.handleGetPassage(req, res, db);
 });
 app.get("/passages", auth.requireAuth, (req, res) => {
   passage.handleGetPassages(req, res, db);

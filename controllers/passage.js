@@ -28,9 +28,9 @@ const handleGetPassages = (req, res, db) => {
       .from("passages")
       .then(passages => {
         res.json(passages);
-      })
+      });
   }
-}
+};
 
 const handleGetPassage = (req, res, db) => {
   const userId = req.userId;
@@ -41,9 +41,9 @@ const handleGetPassage = (req, res, db) => {
       .where("id", id)
       .then(passage => {
         res.json(passage[0]);
-      })
+      });
   }
-}
+};
 
 module.exports = {
   handleAddPassage: handleAddPassage,

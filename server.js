@@ -6,6 +6,7 @@ const knex = require("knex");
 const jwt = require("jsonwebtoken");
 const morgan = require("morgan");
 
+const stats = require("./controllers/stats");
 const register = require("./controllers/register");
 const login = require("./controllers/login");
 const profile = require("./controllers/profile");
@@ -52,6 +53,11 @@ app.get("/passages/:id", auth.requireAuth, (req, res) => {
 });
 app.get("/passages", auth.requireAuth, (req, res) => {
   passage.handleGetPassages(req, res, db);
+});
+
+app.get("/stats", auth.requireAuth, (req, res) => {
+  console.log("getting stats");
+  stats.handleGetStats(req, res, db);
 });
 
 app.get("/profile/:id", auth.requireAuth, (req, res) => {

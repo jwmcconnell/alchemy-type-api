@@ -7,9 +7,7 @@ const handleGetStats = (req, res, db) => {
         user_id: userId
       })
       .then(stats => {
-        console.log(stats);
         if (stats.length) {
-          console.log(stats);
           res.json(stats[0]);
         } else {
           res.status(400).json("Not found");
@@ -19,6 +17,40 @@ const handleGetStats = (req, res, db) => {
   }
 };
 
+const handleSaveStats = (req, res, db) => {
+  const stats = req.body.stats;
+  const userId = req.userId;
+  if (userId) {
+    db.select("*")
+      .from("stats")
+      .where({
+        user_id: userId
+      })
+      .then(currentStats => currentStats[0])
+      .then(currentStats => {
+        currentStats.passages++;
+        currentStats.avg_wpm =
+          (currentStats.avg_wpm * (currentStats.passages - 1) + stats.wpm) /
+          currentStats.passages;
+        currentStats.avg_errors =
+          (currentStats.avg_errors * (currentStats.passages - 1) +
+            stats.errorChars.length) /
+          currentStats.passages;
+        console.log("updating: ", currentStats);
+        db("stats")
+          .where({ user_id: userId })
+          .update({
+            passages: currentStats.passages,
+            avg_wpm: currentStats.avg_wpm,
+            avg_errors: currentStats.avg_errors
+          })
+          .returning("*")
+          .then(newStats => console.log("newStats: ", newStats));
+      });
+  }
+};
+
 module.exports = {
-  handleGetStats: handleGetStats
+  handleGetStats: handleGetStats,
+  handleSaveStats: handleSaveStats
 };

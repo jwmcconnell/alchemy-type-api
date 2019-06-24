@@ -56,8 +56,11 @@ app.get("/passages", auth.requireAuth, (req, res) => {
 });
 
 app.get("/stats", auth.requireAuth, (req, res) => {
-  console.log("getting stats");
   stats.handleGetStats(req, res, db);
+});
+app.post("/stats", auth.requireAuth, (req, res) => {
+  console.log("stats post");
+  stats.handleSaveStats(req, res, db);
 });
 
 app.get("/profile/:id", auth.requireAuth, (req, res) => {

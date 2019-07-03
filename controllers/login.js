@@ -66,13 +66,13 @@ const handleAuth = (req, res, db, bcrypt, jwt) => {
   return authorization
     ? getAuthTokenId(req, res, db)
     : handleLogin(req, res, db, bcrypt)
-      .then(data => {
-        return data.id && data.email
-          ? createSessions(data, jwt)
-          : Promise.reject(data);
-      })
-      .then(session => res.json(session))
-      .catch(err => res.status(400).json(err));
+        .then(data => {
+          return data.id && data.email
+            ? createSessions(data, jwt)
+            : Promise.reject(data);
+        })
+        .then(session => res.json(session))
+        .catch(err => res.status(400).json(err));
 };
 
 module.exports = {

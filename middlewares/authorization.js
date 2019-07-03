@@ -7,6 +7,7 @@ const requireAuth = (req, res, next) => {
   }
   return redisClient.get(authorization, (err, reply) => {
     if (err || !reply) {
+      console.log("auth error");
       return res.status(401).json("Unathorized");
     }
     req.userId = reply;

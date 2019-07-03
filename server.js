@@ -46,6 +46,7 @@ app.post("/register", (req, res) => {
 });
 
 app.post("/passages", auth.requireAuth, (req, res) => {
+  console.log("saving passage");
   passage.handleAddPassage(req, res, db);
 });
 app.get("/passages/:id", auth.requireAuth, (req, res) => {

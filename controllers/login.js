@@ -62,13 +62,11 @@ const createSessions = (user, jwt) => {
 };
 
 const handleAuth = (req, res, db, bcrypt, jwt) => {
-  console.log("Begin handling auth");
   const { authorization } = req.headers;
   return authorization
     ? getAuthTokenId(req, res, db)
     : handleLogin(req, res, db, bcrypt)
         .then(data => {
-          console.log("login data: ", data);
           return data.id && data.email
             ? createSessions(data, jwt)
             : Promise.reject(data);

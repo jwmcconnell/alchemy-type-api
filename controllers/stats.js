@@ -36,14 +36,14 @@ const handleSaveStats = (req, res, db) => {
           (currentStats.avg_errors * (currentStats.passages - 1) +
             stats.errorChars.length) /
           currentStats.passages;
-        db("stats")
+
+        return db("stats")
           .where({ user_id: userId })
           .update({
             passages: currentStats.passages,
             avg_wpm: currentStats.avg_wpm,
             avg_errors: currentStats.avg_errors
-          })
-          .returning("*");
+          });
       });
   }
 };

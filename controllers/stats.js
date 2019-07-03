@@ -36,7 +36,6 @@ const handleSaveStats = (req, res, db) => {
           (currentStats.avg_errors * (currentStats.passages - 1) +
             stats.errorChars.length) /
           currentStats.passages;
-        console.log("updating: ", currentStats);
         db("stats")
           .where({ user_id: userId })
           .update({
@@ -44,8 +43,7 @@ const handleSaveStats = (req, res, db) => {
             avg_wpm: currentStats.avg_wpm,
             avg_errors: currentStats.avg_errors
           })
-          .returning("*")
-          .then(newStats => console.log("newStats: ", newStats));
+          .returning("*");
       });
   }
 };

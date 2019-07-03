@@ -59,7 +59,6 @@ app.get("/stats", auth.requireAuth, (req, res) => {
   stats.handleGetStats(req, res, db);
 });
 app.post("/stats", auth.requireAuth, (req, res) => {
-  console.log("stats post");
   stats.handleSaveStats(req, res, db);
 });
 

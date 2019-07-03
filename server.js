@@ -27,6 +27,7 @@ const db = knex({
 });
 
 const port = process.env.PORT || 3000;
+console.log("Running on part: ", port);
 
 const app = express();
 

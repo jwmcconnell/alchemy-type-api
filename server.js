@@ -39,6 +39,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/login", (req, res) => {
+  cosnole.log("Express has request");
   login.handleAuth(req, res, db, bcrypt, jwt);
 });
 app.post("/register", (req, res) => {

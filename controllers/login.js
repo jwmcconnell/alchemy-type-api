@@ -62,6 +62,7 @@ const createSessions = (user, jwt) => {
 };
 
 const handleAuth = (req, res, db, bcrypt, jwt) => {
+  console.log("Begin handling auth");
   const { authorization } = req.headers;
   return authorization
     ? getAuthTokenId(req, res, db)
